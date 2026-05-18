@@ -1,0 +1,292 @@
+:root {
+    --bg-color: #0b0f19;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --primary: #6d28d9;
+    --primary-hover: #5b21b6;
+    --secondary: rgba(255, 255, 255, 0.1);
+    --secondary-hover: rgba(255, 255, 255, 0.2);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-1: #3b82f6;
+    --accent-2: #eab308;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    position: relative;
+    padding: 40px 10px;
+}
+
+/* Background Blobs */
+.blob {
+    position: absolute;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.6;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--primary), transparent 70%);
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-1), transparent 70%);
+    bottom: -150px;
+    right: -100px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+    display: none;
+}
+
+.glass-panel.active {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.glass-panel.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px) rotateX(-10deg); }
+    to { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    background: linear-gradient(to right, #a855f7, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.badge {
+    font-size: 1rem;
+    background: rgba(168, 85, 247, 0.2);
+    padding: 4px 10px;
+    border-radius: 12px;
+    vertical-align: middle;
+    -webkit-text-fill-color: var(--text-main);
+}
+
+p {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Forms & Inputs */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+input:focus {
+    border-color: var(--primary);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.2);
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 14px 24px;
+    border-radius: 12px;
+    border: none;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn.primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px var(--primary);
+}
+
+.btn.secondary {
+    background: var(--secondary);
+    color: white;
+    backdrop-filter: blur(4px);
+}
+
+.btn.secondary:hover {
+    background: var(--secondary-hover);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.msg {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #ef4444;
+    text-align: center;
+}
+
+/* Quiz Specific */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.difficulty-badge {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.5s;
+}
+
+.difficulty-badge.easy { color: #4ade80; background: rgba(74, 222, 128, 0.2); }
+.difficulty-badge.medium { color: #facc15; background: rgba(250, 204, 21, 0.2); }
+.difficulty-badge.hard { color: #f87171; background: rgba(248, 113, 113, 0.2); }
+
+.question-container h3 {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.feedback {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(0,0,0,0.3);
+    text-align: center;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.feedback p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+/* MCQ Options Styles */
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.option-item {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    padding: 16px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.option-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    transform: translateX(5px);
+}
+
+.option-item.selected {
+    background: rgba(109, 40, 217, 0.4);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(109, 40, 217, 0.3);
+}
+
+.feedback-correct {
+    color: #4ade80 !important;
+    font-size: 1.4rem !important;
+}
+
+.feedback-wrong {
+    color: #f87171 !important;
+    font-size: 1.4rem !important;
+}

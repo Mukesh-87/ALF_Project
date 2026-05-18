@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALF: Adaptive Learning Framework</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Animated Gradients -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="container">
+        <!-- Auth Screen -->
+        <div id="auth-screen" class="glass-panel active">
+            <h1>ALF <span class="badge">Engine</span></h1>
+            <p>Adaptive Learning Framework</p>
+            
+            <form id="auth-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <div class="btn-group">
+                    <button type="button" id="btn-login" class="btn primary">Login</button>
+                    <button type="button" id="btn-register" class="btn secondary">Register</button>
+                </div>
+                <div id="auth-msg" class="msg"></div>
+            </form>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="glass-panel hidden">
+            <header>
+                <h2>Welcome, <span id="user-display"></span></h2>
+                <div class="stats">
+                    <span class="difficulty-badge" id="current-difficulty">Easy</span>
+                </div>
+            </header>
+
+            <div class="question-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 25px;">
+                    <h3 id="question-text" style="margin-bottom: 0; line-height: 1.4; flex: 1;">Loading question...</h3>
+                    <button id="btn-next" class="btn primary" style="width: auto; padding: 10px 20px; white-space: nowrap; display: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(109, 40, 217, 0.4);">Next ➔</button>
+                </div>
+                <div id="options-container" class="options-grid">
+                    <!-- Options will be injected here dynamically -->
+                </div>
+                <div class="keyboard-hint" style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin: 10px 0;">
+                    Select an option and press <strong>Enter</strong> to submit
+                </div>
+                <button id="btn-submit" class="btn primary full-width" style="display: none;">Submit Answer</button>
+            </div>
+
+            <div id="feedback-panel" class="feedback hidden">
+                <p id="feedback-text"></p>
+            </div>
+            
+            <div id="quiz-msg" class="msg"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
