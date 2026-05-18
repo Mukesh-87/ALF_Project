@@ -68,6 +68,7 @@ async function loadNextQuestion() {
     selectedAnswer = null;
     DOM.quizMsg.innerText = '';
     DOM.btnNext.style.display = 'none';
+    DOM.btnSubmit.style.display = 'block';
     
     try {
         const response = await fetch(`/api/quiz/next?userId=${currentUserId}`);
@@ -154,6 +155,7 @@ async function submitAnswer() {
 function showFeedback(oldDiff, newDiff, time, isCorrect, correctAnswer, adjusted, correctInPhase, incorrectInPhase) {
     DOM.feedbackPanel.classList.remove('hidden');
     DOM.btnNext.style.display = 'inline-block';
+    DOM.btnSubmit.style.display = 'none';
     
     let text = isCorrect 
         ? `<div class="feedback-correct">✔️ True! Correct Answer</div>`
